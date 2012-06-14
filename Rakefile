@@ -1,6 +1,8 @@
 require 'rake'
 require 'erb'
 
+task :all => ["setup:all"]
+
 namespace :setup do
   desc "sets up zsh, updates dotfiles and links fonts"
   task :all => ["install:all", :dotfiles, :fonts]
@@ -90,9 +92,6 @@ def link_file(target, file)
     File.open(target, 'w') do |new_file|
       new_file.write ERB.new(File.read(file)).result(binding)
     end
-  elsif file =~ /zshrc$/ # copy zshrc instead of link
-    puts "copying #{file}..."
-    system %Q{cp "#{file}" "#{target}"}
   else
     puts "linking #{file}..."
     system %Q{ln -s "#{file}" "#{target}"}
