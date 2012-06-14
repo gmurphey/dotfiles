@@ -63,7 +63,7 @@ namespace :install do
       puts "installing brew"
       sh %Q{/usr/bin/ruby -e "$(/usr/bin/curl -fksSL https://raw.github.com/mxcl/homebrew/master/Library/Contributions/install_homebrew.rb)"}
     else
-      puts "already using brew"
+      puts "using brew"
     end
   end
 
