@@ -3,26 +3,7 @@ require 'erb'
 
 namespace :setup do
   desc "sets up zsh, updates dotfiles and links fonts"
-  task :all => [:system, :dotfiles, :fonts]
-
-  desc "installs brew, zsh and rvm"
-  task :system => [:brew, :zsh, :rvm]
-
-  desc "installs brew"
-  task :brew do
-    # install_brew
-  end
-
-  desc "installs oh-my-zsh and switches to zsh"
-  task :zsh do
-    install_oh_my_zsh
-    switch_to_zsh
-  end
-
-  desc "installs rvm"
-  task :rvm do
-
-  end
+  task :all => ["install:all", :dotfiles, :fonts]
 
   desc "links dotfiles into home directory"
   task :dotfiles do
@@ -67,6 +48,27 @@ namespace :setup do
       target = "#{target_dir}/#{File.basename(font)}"
       next unless replace_file(target, font)
     end
+  end
+end
+
+namespace :install do
+  desc "installs brew and oh-my-zsh"
+  task :all => [:brew, :zsh]
+
+  desc "installs brew on the system"
+  task :brew do
+    unless File.exists?("/usr/local/bin/brew")
+      puts "installing brew"
+      sh %Q{/usr/bin/ruby -e "$(/usr/bin/curl -fksSL https://raw.github.com/mxcl/homebrew/master/Library/Contributions/install_homebrew.rb)"}
+    else
+      puts "already using brew"
+    end
+  end
+
+  desc "installs oh-my-zsh and switch to zsh"
+  task :zsh do
+    install_oh_my_zsh
+    switch_to_zsh
   end
 end
 
