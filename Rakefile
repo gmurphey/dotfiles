@@ -18,7 +18,7 @@ namespace :setup do
 
       if File.exist?(target_file)
         if File.identical? file, target_file
-          
+          puts "using #{file}"
         elsif replace_all
           replace_file(target_file, file)
         else
@@ -63,7 +63,7 @@ namespace :install do
       puts "installing brew"
       sh %Q{/usr/bin/ruby -e "$(/usr/bin/curl -fksSL https://raw.github.com/mxcl/homebrew/master/Library/Contributions/install_homebrew.rb)"}
     else
-      puts "using brew"
+      puts "already using brew"
     end
   end
 
