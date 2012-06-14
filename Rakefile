@@ -53,7 +53,7 @@ end
 
 namespace :install do
   desc "installs brew and oh-my-zsh"
-  task :all => [:brew, :zsh]
+  task :all => [:brew, :zsh, :rvm]
 
   desc "installs brew on the system"
   task :brew do
@@ -69,6 +69,12 @@ namespace :install do
   task :zsh do
     install_oh_my_zsh
     switch_to_zsh
+  end
+
+  desc "installs rvm"
+  task :rvm do
+    system %Q{curl -L https://get.rvm.io | bash -s stable --ruby}
+    system %Q{source $HOME/.rvm/scripts/rvm}
   end
 end
 
