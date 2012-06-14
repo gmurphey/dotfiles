@@ -88,10 +88,13 @@ end
 
 def link_file(target, file)
   if file =~ /.erb$/
-    puts "creating up #{target}"
+    puts "creating #{target}"
     File.open(target, 'w') do |new_file|
       new_file.write ERB.new(File.read(file)).result(binding)
     end
+  elsif file =~ /.ttf$/
+    puts "copying #{file}"
+    system %Q{cp #{file} #{target}}
   else
     puts "linking #{file}..."
     system %Q{ln -s "#{file}" "#{target}"}
