@@ -35,7 +35,7 @@ namespace :setup do
 
       if File.exist?(target_file)
         if File.identical? file, target_file
-          puts "identical #{target_file}"
+          
         elsif replace_all
           replace_file(target_file, file)
         else
@@ -71,6 +71,7 @@ namespace :setup do
 end
 
 def replace_file(old_file, new_file)
+  puts "removing #{old_file}..."
   system %Q{rm -rf #{old_file}}
   link_file(old_file, new_file)
 end
