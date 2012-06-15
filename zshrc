@@ -4,6 +4,8 @@ DISABLE_LS_COLORS="true"
 
 setopt AUTO_CD
 
+unsetopt correct_all
+
 plugins=(git rails3 brew)
 
 #aliases
