@@ -55,7 +55,8 @@ end
 
 namespace :install do
   desc "installs brew and oh-my-zsh"
-  task :all => [:brew, :zsh, :rvm]
+  task :all => [:brew, :zsh, :rvm, :packages]
+  task :packages => [:system_packages, :rubygems, :node_packages]
 
   desc "installs brew on the system"
   task :brew do
@@ -78,6 +79,21 @@ namespace :install do
     system %Q{curl -L https://get.rvm.io | bash -s stable --ruby}
     system %Q{source $HOME/.rvm/scripts/rvm}
   end
+
+  desc "installs brew packages"
+  task :system_packages do
+    run_from_file(["packages", "brew"]) { |package| system %Q{brew install #{package}} }
+  end
+
+  desc "installs global gems"
+  task :rubygems do
+    run_from_file(["packages", "rubygems"]) { |package| system %Q{gem install #{package}} }
+  end
+
+  desc "installs node packages"
+  task :node_packages do
+    run_from_file(["packages", "npm"]) { |package| system %Q{npm install -g #{package}} }
+  end
 end
 
 def replace_file(old_file, new_file)
@@ -98,6 +114,14 @@ def link_file(target, file)
   else
     puts "linking #{file}..."
     system %Q{ln -s "#{file}" "#{target}"}
+  end
+end
+
+def run_from_file(path_array, &block)
+  package_file = File.join(File.dirname(__FILE__), path_array)
+
+  File.readlines(package_file).map(&:chomp).each do |package|
+    block.call(package)
   end
 end
 
