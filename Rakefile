@@ -56,7 +56,6 @@ end
 namespace :install do
   desc "installs brew and oh-my-zsh"
   task :all => [:brew, :zsh, :rvm, :packages]
-  task :packages => [:system_packages, :rubygems, :node_packages]
 
   desc "installs brew on the system"
   task :brew do
@@ -80,24 +79,29 @@ namespace :install do
     system %Q{source $HOME/.rvm/scripts/rvm}
   end
 
-  desc "installs brew packages"
-  task :system_packages do
-    if system("which brew")
-      run_from_file(["packages", "brew"]) { |package| system %Q{brew install #{package}} }
-    end
-  end
+  namespace :packages do
+    desc "installs system, gem and npm packages"
+    task :all => [:system, :gems, :npms]
 
-  desc "installs global gems"
-  task :rubygems do
-    if system("which gem")
-      run_from_file(["packages", "rubygems"]) { |package| system %Q{gem install #{package}} }
+    desc "installs brew packages"
+    task :system do
+      if system("which brew")
+        run_from_file(["packages", "brew"]) { |package| system %Q{brew install #{package}} }
+      end
     end
-  end
 
-  desc "installs node packages"
-  task :node_packages do
-    if system("which npm")
-      run_from_file(["packages", "npm"]) { |package| system %Q{npm install -g #{package}} }
+    desc "installs global gems"
+    task :gems do
+      if system("which gem")
+        run_from_file(["packages", "rubygems"]) { |package| system %Q{gem install #{package}} }
+      end
+    end
+
+    desc "installs node packages"
+    task :npms do
+      if system("which npm")
+        run_from_file(["packages", "npm"]) { |package| system %Q{npm install -g #{package}} }
+      end
     end
   end
 end
