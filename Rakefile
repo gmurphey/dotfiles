@@ -82,17 +82,23 @@ namespace :install do
 
   desc "installs brew packages"
   task :system_packages do
-    run_from_file(["packages", "brew"]) { |package| system %Q{brew install #{package}} }
+    if system("which brew")
+      run_from_file(["packages", "brew"]) { |package| system %Q{brew install #{package}} }
+    end
   end
 
   desc "installs global gems"
   task :rubygems do
-    run_from_file(["packages", "rubygems"]) { |package| system %Q{gem install #{package}} }
+    if system("which gem")
+      run_from_file(["packages", "rubygems"]) { |package| system %Q{gem install #{package}} }
+    end
   end
 
   desc "installs node packages"
   task :node_packages do
-    run_from_file(["packages", "npm"]) { |package| system %Q{npm install -g #{package}} }
+    if system("which npm")
+      run_from_file(["packages", "npm"]) { |package| system %Q{npm install -g #{package}} }
+    end
   end
 end
 
@@ -120,8 +126,12 @@ end
 def run_from_file(path_array, &block)
   package_file = File.join(File.dirname(__FILE__), path_array)
 
-  File.readlines(package_file).map(&:chomp).each do |package|
-    block.call(package)
+  if File.exist? package_file
+    File.readlines(package_file).map(&:chomp).each do |package|
+      block.call(package)
+    end
+  else
+    puts "could not find #{package_file}"
   end
 end
 
