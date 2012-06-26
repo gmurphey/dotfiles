@@ -43,8 +43,7 @@ namespace :setup do
 
   desc "sets up fonts in system library"
   task :fonts do
-    target_dir = "$HOME/Library/Fonts"
-    fail unless system %Q{mkdir -p #{target_dir}}
+    fail unless system %Q{mkdir -p "$HOME/Library/Fonts"}
 
     Dir.glob("#{File.expand_path(File.dirname(__FILE__))}/resources/fonts/*.ttf") do |font|
       next unless replace_file(font)
