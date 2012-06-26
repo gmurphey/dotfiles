@@ -20,15 +20,15 @@ namespace :setup do
         if File.identical? file, target_file
           puts "using #{file}"
         elsif replace_all
-          replace_file(target_file, file)
+          replace_file(file)
         else
           print "overwrite #{target_file}? [ynaq] "
           case $stdin.gets.chomp
           when "a"
             replace_all = true
-            replace_file(target_file, file)
+            replace_file(file)
           when "y"
-            replace_file(target_file, file)
+            replace_file(file)
           when "q"
             exit
           else
@@ -36,7 +36,7 @@ namespace :setup do
           end
         end
       else
-        link_file(file, target_file)
+        link_file(file)
       end
     end
   end
@@ -47,8 +47,7 @@ namespace :setup do
     fail unless system %Q{mkdir -p #{target_dir}}
 
     Dir.glob("#{File.expand_path(File.dirname(__FILE__))}/resources/fonts/*.ttf") do |font|
-      target = "#{target_dir}/#{File.basename(font)}"
-      next unless replace_file(target, font)
+      next unless replace_file(font)
     end
   end
 end
@@ -106,24 +105,28 @@ namespace :install do
   end
 end
 
-def replace_file(old_file, new_file)
-  puts "removing #{old_file}..."
-  system %Q{rm -rf #{old_file}}
-  link_file(old_file, new_file)
+def replace_file(file)
+  if file =~ /.ttf$/
+    system %Q{rm -rf "$HOME/Library/Fonts/#{File.basename(file)}"}
+  else
+    system %Q{rm -rf "$HOME/.#{file.sub(/\.erb$/, '')}"}
+  end
+
+  # link_file(file)
 end
 
-def link_file(target, file)
+def link_file(file)
   if file =~ /.erb$/
-    puts "creating #{target}"
-    File.open(target, 'w') do |new_file|
+    puts "creating ~/.#{file.sub(/\.erb$/, '')}"
+    File.open(File.join(ENV["HOME"], ".#{file.sub(/\.erb$/, '')}"), 'w') do |new_file|
       new_file.write ERB.new(File.read(file)).result(binding)
     end
   elsif file =~ /.ttf$/
     puts "copying #{file}"
-    system %Q{cp #{file} #{target}}
+    system %Q{cp "#{file}" "$HOME/Library/Fonts/#{File.basename(file)}"}
   else
     puts "linking #{file}..."
-    system %Q{ln -s "#{file}" "#{target}"}
+    system %Q{ln -s "$PWD/#{file}" "$HOME/.#{file}"}
   end
 end
 
