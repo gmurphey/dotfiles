@@ -10,7 +10,7 @@ namespace :setup do
   desc "links dotfiles into home directory"
   task :dotfiles do
     replace_all = false
-    files = Dir['*'] - %w[Rakefile README.md oh-my-zsh resources]
+    files = Dir['*'] - %w[Rakefile README.md oh-my-zsh resources packages]
     files.each do |file|
       system %Q{mkdir -p "$HOME/.#{File.dirname{file}}"} if file =~ /\//
 
