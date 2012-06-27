@@ -1,10 +1,5 @@
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="robbyrussell"
-DISABLE_LS_COLORS="true"
-
-setopt AUTO_CD
-
-unsetopt correct_all
 
 plugins=(git rails3 brew)
 
@@ -13,6 +8,13 @@ alias rake="noglob rake"
 alias g="git"
 
 source $ZSH/oh-my-zsh.sh
+
+setopt auto_cd
+
+unsetopt correct_all
+
+# user-specific bin
+PATH=$PATH:$HOME/bin
 
 # rvm
 [[ -s "~/.rvm/scripts/rvm" ]] && source "~/.rvm/scripts/rvm"
