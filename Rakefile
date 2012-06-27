@@ -98,7 +98,7 @@ namespace :install do
     desc "installs node packages"
     task :npms do
       if system("which npm")
-        run_from_file(["packages", "npm"]) { |package| system %Q{npm install -g #{package}} }
+        run_from_file(["packages", "node"]) { |package| system %Q{npm install -g #{package}} }
       end
     end
   end
