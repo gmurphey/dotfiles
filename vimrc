@@ -1,4 +1,5 @@
 colorscheme monokai
+set guifont=Meslo_LG_S_DZ:h10
 
 filetype off
 call pathogen#runtime_append_all_bundles()
@@ -10,7 +11,7 @@ set modelines=0
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
-set expandtab
+set noexpandtab
 set encoding=utf-8
 set scrolloff=3
 set autoindent
@@ -43,9 +44,7 @@ nnoremap <tab> %
 nnoremap <tab> %
 
 set wrap
-set textwidth=79
 set formatoptions=qrn1
-set colorcolumn=85
 
 set list
 set listchars=tab:▸\ ,eol:¬
@@ -70,3 +69,5 @@ nnoremap <C-l> <C-w>l
 autocmd vimenter * NERDTree
 autocmd vimenter * if !argc() | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+let NERDTreeShowHidden=1
