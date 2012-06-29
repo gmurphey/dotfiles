@@ -26,7 +26,6 @@ set ttyfast
 set ruler
 set backspace=indent,eol,start
 set laststatus=2
-set relativenumber
 set undofile
 
 let mapleader=","
@@ -71,3 +70,7 @@ autocmd vimenter * if !argc() | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 let NERDTreeShowHidden=1
+let g:Powerline_symbols='fancy'
+
+" Use soft tabs for the following
+autocmd bufnewfile,bufread *.rb,[rR]akefile,*.rake set expandtab
