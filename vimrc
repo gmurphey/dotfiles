@@ -1,5 +1,6 @@
 colorscheme monokai
-set guifont=Meslo_LG_S_DZ:h10
+set guifont=menlo_for_powerline:h11
+set linespace=4
 
 filetype off
 call pathogen#runtime_append_all_bundles()
