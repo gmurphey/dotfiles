@@ -1,5 +1,5 @@
 ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="robbyrussell"
+ZSH_THEME="gmurphey"
 
 plugins=(git rails3 brew)
 
@@ -10,7 +10,6 @@ alias g="git"
 source $ZSH/oh-my-zsh.sh
 
 setopt auto_cd
-
 unsetopt correct_all
 
 # user-specific bin
