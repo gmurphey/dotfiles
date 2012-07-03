@@ -28,7 +28,7 @@ set modelines=0
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
-set noexpandtab
+set expandtab
 set encoding=utf-8
 set scrolloff=3
 set autoindent
@@ -88,6 +88,3 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 
 let NERDTreeShowHidden=1
 let g:Powerline_symbols='fancy'
-
-" Use soft tabs for the following
-autocmd bufnewfile,bufread *.rb,[rR]akefile,*.rake set expandtab
