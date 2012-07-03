@@ -1,9 +1,25 @@
-colorscheme monokai
-set guifont=menlo_for_powerline:h11
+call pathogen#runtime_append_all_bundles()
+call pathogen#infect()
+call pathogen#helptags()
+
+syntax on
+set guifont=menlo_for_powerline:h10
 set linespace=4
 
-filetype off
-call pathogen#runtime_append_all_bundles()
+colorscheme solarized
+let g:solarized_style="dark"
+let g:solarized_contrast="high"
+set background=dark
+
+if has('gui_running')
+	set guioptions=egmrt
+	set guioptions-=r
+	set guioptions-=L
+else
+	let g:solarized_termcolors=256
+endif
+
+filetype on
 filetype plugin indent on
 
 set nocompatible
@@ -47,7 +63,7 @@ set wrap
 set formatoptions=qrn1
 
 set list
-set listchars=tab:▸\ ,eol:¬
+set listchars=tab:›\ ,trail:·,eol:↴
 
 nnoremap j gj
 nnoremap k gk
