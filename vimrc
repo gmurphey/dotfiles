@@ -12,11 +12,11 @@ let g:solarized_contrast="high"
 set background=dark
 
 if has('gui_running')
-	set guioptions=egmrt
-	set guioptions-=r
-	set guioptions-=L
+  set guioptions=egmrt
+  set guioptions-=r
+  set guioptions-=L
 else
-	let g:solarized_termcolors=256
+  let g:solarized_termcolors=256
 endif
 
 filetype on
@@ -63,7 +63,7 @@ set wrap
 set formatoptions=qrn1
 
 set list
-set listchars=tab:›\ ,trail:·,eol:↴
+set listchars=tab:›\ ,trail:·
 
 nnoremap j gj
 nnoremap k gk
@@ -88,3 +88,5 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 
 let NERDTreeShowHidden=1
 let g:Powerline_symbols='fancy'
+
+autocmd bufwritepre * :%s/\s\+$//e
