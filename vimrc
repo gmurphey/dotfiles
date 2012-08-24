@@ -6,17 +6,12 @@ syntax on
 set guifont=menlo_for_powerline:h10
 set linespace=4
 
-colorscheme solarized
-let g:solarized_style="dark"
-let g:solarized_contrast="high"
-set background=dark
+colorscheme monokai
 
 if has('gui_running')
   set guioptions=egmrt
   set guioptions-=r
   set guioptions-=L
-else
-  let g:solarized_termcolors=256
 endif
 
 filetype on
@@ -86,6 +81,11 @@ nmap <D-[> <<
 nmap <D-]> >>
 vmap <D-[> <gv
 vmap <D-]> >gv
+
+set backup
+set backupdir=$HOME/.vimbackup//
+set directory=$HOME/.vimswap//
+set viewdir=$HOME/.vimviews//
 
 autocmd vimenter * NERDTree
 autocmd vimenter * if !argc() | NERDTree | endif
