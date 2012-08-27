@@ -2,8 +2,10 @@
 	name = <%= print("Your Name: "); STDOUT.flush; STDIN.gets.chomp %>
 	email = <%= print("Your Email: "); STDOUT.flush; STDIN.gets.chomp %>
 [alias]
+  a = add
 	c = commit
-	co = checkout
+  co = checkout
+  d = diff
 	s = status
 	nm = branch --no-merged
 	l = log
@@ -19,4 +21,3 @@
 	whitespace = nowarn
 [github]
 	user = <%= print("GitHub Username: "); STDOUT.flush; STDIN.gets.chomp %>
-	token = <%= print("GitHub API Token: "); STDOUT.flush; STDIN.gets.chomp %>
