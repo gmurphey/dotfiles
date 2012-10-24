@@ -3,7 +3,7 @@ call pathogen#infect()
 call pathogen#helptags()
 
 syntax on
-set guifont=menlo_for_powerline:h10
+set guifont=menlo_for_powerline:h11
 set linespace=4
 
 colorscheme monokai
@@ -86,6 +86,8 @@ set backup
 set backupdir=$HOME/.vimbackup//
 set directory=$HOME/.vimswap//
 set viewdir=$HOME/.vimviews//
+
+au BufNewFile,BufRead *.less set filetype=less
 
 autocmd vimenter * NERDTree
 autocmd vimenter * if !argc() | NERDTree | endif
