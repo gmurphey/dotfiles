@@ -5,8 +5,9 @@ plugins=(git rails3 brew)
 
 #aliases
 alias rake="noglob rake"
-alias g="git"
 alias server="sudo python -m SimpleHTTPServer 80"
+alias synvim="mvim -S ~/synacor.vim"
+alias presovim="mvim -S ~/presentation.vim"
 
 source $ZSH/oh-my-zsh.sh
 

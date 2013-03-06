@@ -30,6 +30,7 @@ set autoindent
 set showmode
 set showcmd
 set hidden
+set nowrap
 set wildmenu
 set wildmode=list:longest
 set visualbell
@@ -39,6 +40,7 @@ set ruler
 set backspace=indent,eol,start
 set laststatus=2
 set undofile
+set ff=unix
 
 let mapleader=","
 

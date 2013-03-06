@@ -1,5 +1,8 @@
 postgresql
 node
 python
+phantomjs
+casperjs
 # for vim powerline symbols
 fontforge
+

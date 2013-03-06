@@ -111,7 +111,7 @@ def replace_file(file)
     system %Q{rm -rf "$HOME/.#{file.sub(/\.erb$/, '')}"}
   end
 
-  # link_file(file)
+  link_file(file)
 end
 
 def link_file(file)
