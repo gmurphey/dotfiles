@@ -1,5 +1,5 @@
 ZSH=$HOME/.oh-my-zsh
-ZSH_CUSTOM=$HOME/zsh-custom
+ZSH_CUSTOM=$HOME/.zsh-custom
 ZSH_THEME="gmurphey"
 
 plugins=(git rails3 brew)
