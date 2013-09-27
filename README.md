@@ -6,10 +6,10 @@ Sets up profile and installs packages.
 
 - Git
 - Ruby
-- MacVim
 
 ## Getting Setup
 
     git clone https://github.com/gmurphey/dotfiles && cd dotfiles
-    git submodules update
+    gem install rake
+    git submodule init && git submodule update
     rake setup
