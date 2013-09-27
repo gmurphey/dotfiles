@@ -6,7 +6,7 @@ syntax on
 set guifont=menlo_for_powerline:h11
 set linespace=4
 
-colorscheme monokai
+colorscheme Tomorrow-Night-Eighties
 
 if has('gui_running')
   set guioptions=egmrt
