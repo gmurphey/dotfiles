@@ -97,4 +97,5 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 let NERDTreeShowHidden=1
 let g:Powerline_symbols='fancy'
 
-autocmd bufwritepre * :%s/\s\+$//e
+let whitespace_blacklist = ['markdown']
+autocmd BufWritePre * if index(whitespace_blacklist, &ft) < 0 | :%s/\s\+$//e
