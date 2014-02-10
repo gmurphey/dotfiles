@@ -83,11 +83,6 @@ nmap <D-]> >>
 vmap <D-[> <gv
 vmap <D-]> >gv
 
-set backup
-set backupdir=$HOME/.vimbackup//
-set directory=$HOME/.vimswap//
-set viewdir=$HOME/.vimviews//
-
 au BufNewFile,BufRead *.less set filetype=less
 
 autocmd vimenter * NERDTree
