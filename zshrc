@@ -21,3 +21,6 @@ PATH=$PATH:$HOME/bin
 # rvm
 [[ -s "~/.rvm/scripts/rvm" ]] && source "~/.rvm/scripts/rvm"
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+# added by travis gem
+[ -f /Users/gmurphey/.travis/travis.sh ] && source /Users/gmurphey/.travis/travis.sh

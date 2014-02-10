@@ -1,0 +1,3 @@
+so ~/.vimrc
+
+set noexpandtab
