@@ -85,6 +85,7 @@ vmap <D-[> <gv
 vmap <D-]> >gv
 
 au BufNewFile,BufRead *.less set filetype=less
+au BufNewFile,BufRead *.md set filetype=markdown
 
 autocmd vimenter * NERDTree
 autocmd vimenter * if !argc() | NERDTree | endif
