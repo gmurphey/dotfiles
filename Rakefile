@@ -135,7 +135,7 @@ def run_from_file(path_array, &block)
 
   if File.exist? package_file
     File.readlines(package_file).map(&:chomp).each do |package|
-      unless package.starts_with?("#")
+      unless package.[0] == "#"
         block.call(package)
       end
     end
