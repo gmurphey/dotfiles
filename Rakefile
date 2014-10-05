@@ -59,7 +59,7 @@ namespace :install do
   task :brew do
     unless File.exists?("/usr/local/bin/brew")
       puts "installing brew"
-      sh %Q{/usr/bin/ruby -e "$(/usr/bin/curl -fksSL https://raw.github.com/mxcl/homebrew/master/Library/Contributions/install_homebrew.rb)"}
+      sh %Q{/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"}
     else
       puts "already using brew"
     end
