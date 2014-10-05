@@ -52,7 +52,7 @@ namespace :setup do
 end
 
 namespace :install do
-  desc "installs brew and oh-my-zsh"
+  desc "installs brew, casks, and oh-my-zsh"
   task :all => [:brew, :zsh, :rvm, :packages]
 
   desc "installs brew on the system"
@@ -64,7 +64,7 @@ namespace :install do
       puts "already using brew"
     end
   end
-
+  
   desc "installs oh-my-zsh and switch to zsh"
   task :zsh do
     install_oh_my_zsh
@@ -79,12 +79,19 @@ namespace :install do
 
   namespace :packages do
     desc "installs system, gem and npm packages"
-    task :all => [:system, :gems, :npms]
+    task :all => [:system, :casks, :gems, :npms]
 
     desc "installs brew packages"
     task :system do
       if system("which brew")
         run_from_file(["packages", "brew"]) { |package| system %Q{brew install #{package}} }
+      end
+    end
+    
+    desc "installs brew casks"
+    task :casks do
+      if system("which brew")
+        run_from_file(["packages", "casks"]) { |package| system %Q{brew cask install #{package}} }
       end
     end
 
