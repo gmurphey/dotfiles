@@ -45,7 +45,7 @@ namespace :setup do
   task :fonts do
     fail unless system %Q{mkdir -p "$HOME/Library/Fonts"}
 
-    Dir.glob("#{File.expand_path(File.dirname(__FILE__))}/resources/fonts/*.ttf") do |font|
+    Dir.glob("#{File.expand_path(File.dirname(__FILE__))}/resources/fonts/*") do |font|
       next unless replace_file(font)
     end
   end
