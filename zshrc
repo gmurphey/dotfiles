@@ -7,8 +7,7 @@ plugins=(git)
 #aliases
 alias rake="noglob rake"
 alias server="sudo python -m SimpleHTTPServer 80"
-alias synvim="vim -S ~/.vim/settings/synacor.vim"
-alias presovim="vim -S ~/.vim/settings/presentation.vim"
+alias presovim="mvim -S ~/.vim/settings/presentation.vim"
 
 source $ZSH/oh-my-zsh.sh
 
