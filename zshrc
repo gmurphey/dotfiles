@@ -23,3 +23,5 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 # added by travis gem
 [ -f /Users/gmurphey/.travis/travis.sh ] && source /Users/gmurphey/.travis/travis.sh
+
+source $(brew --prefix nvm)/nvm.sh
