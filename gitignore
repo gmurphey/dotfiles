@@ -5,3 +5,4 @@
 *.swo
 *.swn
 node_modules/
+.vscode/
