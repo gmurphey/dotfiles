@@ -1,9 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/Users/gmurphey/Dropbox/github/dotfiles'
-let g:netrw_dirhist_2='/Users/gmurphey/.oh-my-zsh/custom'
-let g:netrw_dirhist_3='/Users/gmurphey'
-let g:netrw_dirhist_4='/Users/gmurphey/Dropbox/github/jQuery.Outbound-Analytics'
-let g:netrw_dirhist_5='/Users/gmurphey/synacor'
-let g:netrw_dirhist_6='/Users/gmurphey/grunt-bbb-proxy/tasks'
-let g:netrw_dirhist_7='/Users/gmurphey/Dropbox/git/news-break-app'

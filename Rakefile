@@ -5,12 +5,12 @@ task :all => ["setup:all"]
 
 namespace :setup do
   desc "sets up zsh, updates dotfiles and links fonts"
-  task :all => ["install:all", :dotfiles, :fonts]
+  task :all => ["install:all", :dotfiles]
 
   desc "links dotfiles into home directory"
   task :dotfiles do
     replace_all = false
-    files = Dir['*'] - %w[Rakefile README.md oh-my-zsh resources packages]
+    files = Dir['*'] - %w[Rakefile README.md oh-my-zsh]
     files.each do |file|
       system %Q{mkdir -p "$HOME/.#{File.dirname{file}}"} if file =~ /\//
 
@@ -40,68 +40,26 @@ namespace :setup do
       end
     end
   end
-
-  desc "sets up fonts in system library"
-  task :fonts do
-    fail unless system %Q{mkdir -p "$HOME/Library/Fonts"}
-
-    Dir.glob("#{File.expand_path(File.dirname(__FILE__))}/resources/fonts/*") do |font|
-      next unless replace_file(font)
-    end
-  end
 end
 
 namespace :install do
   desc "installs brew, casks, and oh-my-zsh"
-  task :all => [:brew, :zsh, :packages]
+  task :all => [:brew, :zsh]
 
   desc "installs brew on the system"
   task :brew do
     unless File.exists?("/usr/local/bin/brew")
       puts "installing brew"
-      sh %Q{/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"}
+      sh %Q{/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"}
     else
       puts "already using brew"
     end
   end
-  
+
   desc "installs oh-my-zsh and switch to zsh"
   task :zsh do
     install_oh_my_zsh
     switch_to_zsh
-  end
-
-  namespace :packages do
-    desc "installs system, gem and npm packages"
-    task :all => [:system, :casks, :gems, :npms]
-
-    desc "installs brew packages"
-    task :system do
-      if system("which brew")
-        run_from_file(["packages", "brew"]) { |package| system %Q{brew install #{package}} }
-      end
-    end
-    
-    desc "installs brew casks"
-    task :casks do
-      if system("which brew")
-        run_from_file(["packages", "casks"]) { |package| system %Q{brew cask install #{package}} }
-      end
-    end
-
-    desc "installs global gems"
-    task :gems do
-      if system("which gem")
-        run_from_file(["packages", "rubygems"]) { |package| system %Q{gem install #{package}} }
-      end
-    end
-
-    desc "installs node packages"
-    task :npms do
-      if system("which npm")
-        run_from_file(["packages", "node"]) { |package| system %Q{npm install -g #{package}} }
-      end
-    end
   end
 end
 

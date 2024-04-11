@@ -1,3 +1,0 @@
-so ~/.vimrc
-
-colorscheme github
